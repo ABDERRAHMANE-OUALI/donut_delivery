@@ -1,6 +1,7 @@
 import 'package:donut_delivery/widgets/category_list.dart';
 import 'package:donut_delivery/widgets/stores_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -98,7 +99,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           ),
           CategoryList(),
-          StoresList()
+          const StoresList()
         ],
       ),
     );

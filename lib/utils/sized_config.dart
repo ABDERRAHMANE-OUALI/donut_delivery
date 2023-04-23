@@ -25,7 +25,7 @@ class SizeConfig {
   static late double _heightMultiplyingFactor;
 
   //orientation of the screen
-  static late Orientation? _orientation;
+  static Orientation? _orientation = Orientation.portrait;
 
   //default constructor
   SizeConfig.init({
