@@ -12,18 +12,24 @@ class StoreItem extends StatelessWidget {
       padding: const EdgeInsets.only(top: 28.0),
       child: ListTile(
         horizontalTitleGap: 22,
-        leading: Image.asset(
-          item.imgUrl,
-          width: 90,
-          height: 90,
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            item.imgUrl,
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              item.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
-            ),
+            Text(item.title, style: Theme.of(context).textTheme.headlineMedium
+                // const TextStyle(
+                //   fontWeight: FontWeight.bold,
+                //   fontSize: 19,
+                // ),
+                ),
             Padding(
               padding: const EdgeInsets.only(top: 7),
               child: Row(

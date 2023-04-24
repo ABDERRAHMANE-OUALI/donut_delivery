@@ -15,7 +15,7 @@ class StoresList extends StatelessWidget {
       return StoreItem(
         item: item,
       )
-          .animate(delay: (100 * i).ms)
+          .animate(delay: (100 * i).ms + 600.ms)
           .fadeIn(delay: 500.ms)
           .slideY(duration: 500.ms, curve: Curves.ease, begin: 0.5);
     }).toList());

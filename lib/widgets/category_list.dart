@@ -1,6 +1,7 @@
 import 'package:donut_delivery/data.dart';
 import 'package:donut_delivery/widgets/category_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class CategoryList extends StatefulWidget {
   @override
@@ -40,6 +41,6 @@ class _CategoryListState extends State<CategoryList> {
             },
             itemCount: 4,
           )),
-    );
+    ).animate().slideX(begin: 1, curve: Curves.ease, duration: 600.ms);
   }
 }

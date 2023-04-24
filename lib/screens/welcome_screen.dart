@@ -5,6 +5,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
+
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
@@ -12,10 +14,12 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   SMITrigger? _shoopingTrigger;
   SMIBool? _liked;
+
+  bool _showBottom = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -43,63 +47,64 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 28.0),
-            child: SizedBox(
-              height: 150,
-              width: 80,
-              child: GestureDetector(
-                onTap: () {
-                  _liked?.value = true;
+          SizedBox(
+            height: 150,
+            width: 80,
+            child: GestureDetector(
+              onTap: () {
+                _liked?.value = true;
+              },
+              child: RiveAnimation.asset(
+                "assets/heart.riv",
+                stateMachines: const ["State Machine 1"],
+                artboard: "heart",
+                onInit: (artboard) {
+                  final controller = StateMachineController.fromArtboard(
+                      artboard, "State Machine 1");
+                  artboard.addController(controller!);
+                  setState(() {
+                    _liked = controller.findInput("like") as SMIBool;
+                  });
                 },
-                child: RiveAnimation.asset(
-                  "assets/heart.riv",
-                  stateMachines: const ["State Machine 1"],
-                  artboard: "heart",
-                  onInit: (artboard) {
-                    final controller = StateMachineController.fromArtboard(
-                        artboard, "State Machine 1");
-                    artboard.addController(controller!);
-                    setState(() {
-                      _liked = controller.findInput("like") as SMIBool;
-                    });
-                  },
-                ),
               ),
             ),
           )
         ],
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 28.0),
-            child: SizedBox(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text.rich(TextSpan(
-                        text: "Hi,  ",
-                        style: TextStyle(fontSize: 32),
-                        children: [
-                          TextSpan(
-                              text: "Jhon!",
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ])),
-                    Padding(
-                      padding: EdgeInsets.only(top: 12.0),
-                      child: Text(
-                        "Delivery To 430 Customers",
-                      ),
-                    )
-                  ]),
-            ),
+          ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 28.0),
+                child: SizedBox(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text.rich(TextSpan(
+                            text: "Hi,  ",
+                            style: TextStyle(fontSize: 32),
+                            children: [
+                              TextSpan(
+                                  text: "Jhon!",
+                                  style: TextStyle(fontWeight: FontWeight.bold))
+                            ])),
+                        Padding(
+                          padding: EdgeInsets.only(top: 12.0),
+                          child: Text(
+                            "Delivery To 430 Customers",
+                          ),
+                        )
+                      ]),
+                ),
+              ),
+              CategoryList(),
+              const StoresList()
+            ],
           ),
-          CategoryList(),
-          const StoresList()
         ],
       ),
     );
