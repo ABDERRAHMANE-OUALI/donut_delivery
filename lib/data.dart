@@ -43,32 +43,32 @@ List<Map<String, dynamic>> productList = const [
   {
     "title": "Honey Milk Donut",
     "detail": "Honey + sugar + flawour + some ingrident ...",
-    "imagePath": "assets/images/donut/donut_7.png",
+    "imagePath": "assets/donut_7.png",
   },
   {
     "title": "Raspberry Donut",
     "detail": "Raspberry + sugar + flawour ",
-    "imagePath": "assets/images/donut/donut_2.png",
+    "imagePath": "assets/donut_2.png",
   },
   {
     "title": "Chocolate Donut",
     "detail": "Chocolate + sugar + flawour + some ingrident ...",
-    "imagePath": "assets/images/donut/donut_3.png",
+    "imagePath": "assets/donut_3.png",
   },
   {
     "title": "Blueberry Donut",
     "detail": "Blueberry + sugar + flawour + some ingrident ...",
-    "imagePath": "assets/images/donut/donut_4.png",
+    "imagePath": "assets/donut_4.png",
   },
   {
     "title": "Sugary Heaven",
     "detail": " Sugar + flawour + some ingrident ...",
-    "imagePath": "assets/images/donut/donut_5.png",
+    "imagePath": "assets/donut_5.png",
   },
   {
     "title": "Juicy Donut",
     "detail": "Juicy + sugar + flawour + some ingrident ...",
-    "imagePath": "assets/images/donut/donut_6.png",
+    "imagePath": "assets/donut_6.png",
   },
 ];
 
