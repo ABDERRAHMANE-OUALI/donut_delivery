@@ -1,85 +1,114 @@
 import 'package:donut_delivery/data.dart';
+import 'package:donut_delivery/screens/product_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
 
-class VendorScreen extends StatelessWidget {
+class VendorScreen extends StatefulWidget {
+  const VendorScreen({super.key});
+
+  @override
+  State<VendorScreen> createState() => _VendorScreenState();
+}
+
+class _VendorScreenState extends State<VendorScreen> {
+  bool _reachedTop = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          CustomScrollView(
-            slivers: [
-              SliverAppBar.large(
-                  expandedHeight: 340,
-                  backgroundColor: Colors.transparent,
-                  flexibleSpace: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30)),
-                    child: FlexibleSpaceBar(
-                      background: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.asset(
-                            "assets/temp_vendor_bg.png",
-                            fit: BoxFit.cover,
-                          ),
-                          Positioned(
-                            bottom: 260,
-                            right: 0,
-                            height: 91,
-                            width: 391,
-                            child: Container(
-                              color: Colors.transparent,
+          NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification.metrics.pixels == 0.0) {
+                setState(() {
+                  _reachedTop = true;
+                });
+              } else {
+                setState(() {
+                  _reachedTop = false;
+                });
+              }
+              print(notification.metrics.pixels);
+              return true;
+            },
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar.large(
+                    expandedHeight: 340,
+                    backgroundColor: Colors.transparent,
+                    flexibleSpace: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30)),
+                      child: FlexibleSpaceBar(
+                        background: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.asset(
+                              "assets/temp_vendor_bg.png",
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned(
+                              bottom: 260,
+                              right: 0,
                               height: 91,
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Back",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall
-                                          ?.copyWith(color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 150,
-                                      width: 70,
-                                      child: GestureDetector(
-                                        child: RiveAnimation.asset(
-                                          "assets/shopping.riv",
-                                          stateMachines: const ["shopping"],
-                                          artboard: "shopping",
-                                          onInit: (artboard) {
-                                            final controller =
-                                                StateMachineController
-                                                    .fromArtboard(
-                                                        artboard, "shopping");
-                                            artboard.addController(controller!);
-                                          },
+                              width: 391,
+                              child: Container(
+                                color: Colors.transparent,
+                                height: 91,
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          "Back",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displaySmall
+                                              ?.copyWith(color: Colors.white),
                                         ),
                                       ),
-                                    ),
-                                  ]),
+                                      SizedBox(
+                                        height: 150,
+                                        width: 70,
+                                        child: GestureDetector(
+                                          child: RiveAnimation.asset(
+                                            "assets/shopping.riv",
+                                            stateMachines: const ["shopping"],
+                                            artboard: "shopping",
+                                            onInit: (artboard) {
+                                              final controller =
+                                                  StateMachineController
+                                                      .fromArtboard(
+                                                          artboard, "shopping");
+                                              artboard
+                                                  .addController(controller!);
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  )),
-              const SliverPadding(padding: EdgeInsets.only(top: 60)),
-              NotificationListener<ScrollNotification>(
-                onNotification: (notification) {
-                  print(notification);
-                  return true;
-                },
-                child: SliverList(
+                    )),
+                const SliverPadding(padding: EdgeInsets.only(top: 60)),
+                SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                   return GestureDetector(
                     onTap: () {
-                      print("details");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductScreen(),
+                          ));
                     },
                     child: ListTile(
                       contentPadding: EdgeInsets.all(12),
@@ -122,9 +151,9 @@ class VendorScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                }, childCount: productList.length)),
-              )
-            ],
+                }, childCount: productList.length))
+              ],
+            ),
           ),
           Positioned(
             bottom: 480,
@@ -132,7 +161,7 @@ class VendorScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 20,
             height: 151,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     bottomLeft: Radius.circular(30)),
@@ -237,7 +266,9 @@ class VendorScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          )
+              .animate(target: _reachedTop ? 1 : 0)
+              .slideX(begin: 1, curve: Curves.ease),
         ],
       ),
     );
