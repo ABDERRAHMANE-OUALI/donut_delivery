@@ -1,5 +1,5 @@
 import 'package:donut_delivery/data.dart';
-import 'package:donut_delivery/screens/product_screen.dart';
+import 'package:donut_delivery/presentation/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';

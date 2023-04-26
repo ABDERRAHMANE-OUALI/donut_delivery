@@ -1,4 +1,4 @@
-import 'package:donut_delivery/models/store_item.dart';
+import 'package:donut_delivery/data/models/store_item.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

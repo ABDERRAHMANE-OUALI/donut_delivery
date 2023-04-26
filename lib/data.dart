@@ -38,6 +38,13 @@ List<Map<String, dynamic>> vendorList = const [
   },
 ];
 
+const categories = [
+  {"imgPath": "", "title": "All"},
+  {"imgPath": "", "title": "Burger"},
+  {"imgPath": "", "title": "Pizzq"},
+  {"imgPath": "", "title": "Desert"}
+];
+
 //Vendor Screen
 List<Map<String, dynamic>> productList = const [
   {

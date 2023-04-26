@@ -1,5 +1,5 @@
-import 'package:donut_delivery/models/store_item.dart';
-import 'package:donut_delivery/screens/vendor_screen.dart';
+import 'package:donut_delivery/data/models/store_item.dart';
+import 'package:donut_delivery/presentation/vendor_screen/vendor_screen.dart';
 import 'package:donut_delivery/widgets/store_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

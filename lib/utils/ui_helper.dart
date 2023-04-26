@@ -24,10 +24,6 @@ const double space4x = 4 * _baseSpacing;
 //5X SPACING
 const double space5x = 5 * _baseSpacing;
 
-//SCREEN MULTIPLIERS
-double get rWidthMultiplier => SizeConfig.widthMultiplier;
-double get rHeightMultiplier => SizeConfig.heightMultiplier;
-
 double rw(double width) => SizeConfig.setWidth(width);
 double rh(double height) => SizeConfig.setHeight(height);
 double rf(double size) => SizeConfig.setSp(size);

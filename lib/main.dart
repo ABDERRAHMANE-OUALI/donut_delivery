@@ -1,5 +1,5 @@
-import 'package:donut_delivery/const/theme.dart';
-import 'package:donut_delivery/screens/welcome_screen.dart';
+import 'package:donut_delivery/theme.dart';
+import 'package:donut_delivery/presentation/welcome_screen/welcome_screen.dart';
 import 'package:donut_delivery/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 
