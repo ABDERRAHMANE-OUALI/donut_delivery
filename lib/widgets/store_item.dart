@@ -93,9 +93,9 @@ class _StoreItemState extends State<StoreItem> {
                             Color.fromARGB(98, 254, 213, 255),
                         borderRadius: BorderRadius.all(Radius.circular(32))),
                     child: Row(
-                      children: [
-                        const Icon(Icons.timer),
-                        const Text(
+                      children: const [
+                        Icon(Icons.timer),
+                        Text(
                           "15 - 20 min",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )

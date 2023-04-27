@@ -1,5 +1,3 @@
-import 'package:donut_delivery/data.dart';
-import 'package:donut_delivery/data/models/store_item.dart';
 import 'package:donut_delivery/presentation/vendor_screen/vendor_screen.dart';
 import 'package:donut_delivery/presentation/welcome_screen/bloc/donuts_bloc.dart';
 import 'package:donut_delivery/widgets/store_item.dart';

@@ -13,7 +13,8 @@ class ProductTextInfo extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
         ),
         Text(
           info,

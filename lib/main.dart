@@ -1,7 +1,5 @@
 import 'package:donut_delivery/presentation/welcome_screen/bloc/donuts_bloc.dart';
-import 'package:donut_delivery/theme.dart';
 import 'package:donut_delivery/presentation/welcome_screen/welcome_screen.dart';
-import 'package:donut_delivery/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -140,6 +138,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return WelcomeScreen();
+    return const WelcomeScreen();
   }
 }

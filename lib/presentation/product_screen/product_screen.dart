@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
 import 'package:donut_delivery/widgets/product_text_info.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   SMIBool? _like;
+  SMITrigger? _shoopingTrigger;
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +42,41 @@ class _ProductScreenState extends State<ProductScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ShoppingScreen(),
-                  ));
+              _shoopingTrigger?.fire();
+              Timer(700.ms, () {
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const ShoppingScreen(),
+                      transitionDuration: 200.ms,
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                              SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0, 1),
+                          end: const Offset(0, 0),
+                        ).animate(animation),
+                        child: child,
+                      ),
+                    ));
+              });
             },
-            child: const SizedBox(
+            child: SizedBox(
                 height: 60,
                 width: 60,
                 child: RiveAnimation.asset(
                   "assets/shopping.riv",
                   artboard: "shopping",
+                  onInit: (artboard) {
+                    final controller = StateMachineController.fromArtboard(
+                        artboard, "State Machine 1");
+                    artboard.addController(controller!);
+                    setState(() {
+                      _shoopingTrigger =
+                          controller.findSMI("click") as SMITrigger;
+                    });
+                  },
                 )),
           )
         ],
@@ -75,16 +101,16 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const ProductTextInfo(
+                    children: const [
+                      ProductTextInfo(
                         text: 'Weight',
                         info: "400g",
                       ),
-                      const ProductTextInfo(
+                      ProductTextInfo(
                         text: 'Calories',
                         info: "420 Col",
                       ),
-                      const ProductTextInfo(
+                      ProductTextInfo(
                         text: 'People',
                         info: "1 Person",
                       ),
@@ -167,8 +193,20 @@ class _ProductScreenState extends State<ProductScreen> {
                           onPressed: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => ShoppingScreen(),
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
+                                      const ShoppingScreen(),
+                                  transitionDuration: 200.ms,
+                                  transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) =>
+                                      SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(0, 1),
+                                      end: const Offset(0, 0),
+                                    ).animate(animation),
+                                    child: child,
+                                  ),
                                 ));
                           },
                           child: Text(

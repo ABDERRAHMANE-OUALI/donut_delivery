@@ -23,7 +23,7 @@ class CategoryItem extends StatelessWidget {
               child: SizedBox(
                   height: 50, width: 50, child: RiveAnimation.asset(imgPath))),
           Padding(
-            padding: EdgeInsets.only(top: 12.0),
+            padding: const EdgeInsets.only(top: 12.0),
             child: Text(
               title,
               style: Theme.of(context)

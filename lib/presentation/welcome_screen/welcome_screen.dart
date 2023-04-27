@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
 import 'package:donut_delivery/widgets/category_list.dart';
 import 'package:donut_delivery/widgets/stores_list.dart';
@@ -14,9 +16,6 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   SMITrigger? _shoopingTrigger;
-  SMIBool? _liked;
-
-  bool _showBottom = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +31,35 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: GestureDetector(
               onTap: () {
                 _shoopingTrigger?.fire();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShoppingScreen(),
-                    ));
+                Timer(700.ms, () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const ShoppingScreen(),
+                        transitionDuration: 200.ms,
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) =>
+                                SlideTransition(
+                          position: Tween<Offset>(
+                            begin: const Offset(0, 1),
+                            end: const Offset(0, 0),
+                          ).animate(animation),
+                          child: child,
+                        ),
+                      ));
+                });
               },
               child: RiveAnimation.asset(
                 "assets/shopping.riv",
-                stateMachines: const ["shopping"],
                 artboard: "shopping",
                 onInit: (artboard) {
-                  final controller =
-                      StateMachineController.fromArtboard(artboard, "shopping");
+                  final controller = StateMachineController.fromArtboard(
+                      artboard, "State Machine 1");
                   artboard.addController(controller!);
                   setState(() {
                     _shoopingTrigger =
-                        controller.findInput("click") as SMITrigger;
+                        controller.findSMI("click") as SMITrigger;
                   });
                 },
               ),

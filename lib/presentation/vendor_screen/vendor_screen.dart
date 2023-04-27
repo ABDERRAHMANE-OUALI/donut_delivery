@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:donut_delivery/data.dart';
 import 'package:donut_delivery/presentation/product_screen/product_screen.dart';
 import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
@@ -14,6 +16,8 @@ class VendorScreen extends StatefulWidget {
 
 class _VendorScreenState extends State<VendorScreen> {
   bool _reachedTop = true;
+  SMITrigger? _shoopingTrigger;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +34,6 @@ class _VendorScreenState extends State<VendorScreen> {
                   _reachedTop = false;
                 });
               }
-              print(notification.metrics.pixels);
               return true;
             },
             child: CustomScrollView(
@@ -62,41 +65,51 @@ class _VendorScreenState extends State<VendorScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          "Back",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displaySmall
-                                              ?.copyWith(color: Colors.white),
-                                        ),
-                                      ),
                                       SizedBox(
                                         height: 150,
                                         width: 70,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ShoppingScreen(),
-                                                ));
+                                            _shoopingTrigger?.fire();
+                                            Timer(700.ms, () {
+                                              Navigator.push(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    pageBuilder: (context,
+                                                            animation,
+                                                            secondaryAnimation) =>
+                                                        const ShoppingScreen(),
+                                                    transitionDuration: 200.ms,
+                                                    transitionsBuilder: (context,
+                                                            animation,
+                                                            secondaryAnimation,
+                                                            child) =>
+                                                        SlideTransition(
+                                                      position: Tween<Offset>(
+                                                        begin:
+                                                            const Offset(0, 1),
+                                                        end: const Offset(0, 0),
+                                                      ).animate(animation),
+                                                      child: child,
+                                                    ),
+                                                  ));
+                                            });
                                           },
                                           child: RiveAnimation.asset(
                                             "assets/shopping.riv",
-                                            stateMachines: const ["shopping"],
                                             artboard: "shopping",
                                             onInit: (artboard) {
                                               final controller =
                                                   StateMachineController
-                                                      .fromArtboard(
-                                                          artboard, "shopping");
+                                                      .fromArtboard(artboard,
+                                                          "State Machine 1");
                                               artboard
                                                   .addController(controller!);
+                                              setState(() {
+                                                _shoopingTrigger =
+                                                    controller.findSMI("click")
+                                                        as SMITrigger;
+                                              });
                                             },
                                           ),
                                         ),
