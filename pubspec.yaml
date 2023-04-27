@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^2.0.5
   blur: ^3.1.0
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:
@@ -61,8 +62,9 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true # WARNING: Icons with alpha channel are not allowed in the Apple App Store.
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
