@@ -10,6 +10,7 @@
 .svn/
 migrate_working_dir/
 *.tar.gz
+*.png
 
 # IntelliJ related
 *.iml

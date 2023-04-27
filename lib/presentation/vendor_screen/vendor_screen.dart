@@ -65,6 +65,7 @@ class _VendorScreenState extends State<VendorScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
+                                      const SizedBox.shrink(),
                                       SizedBox(
                                         height: 150,
                                         width: 70,

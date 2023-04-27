@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => DonutsBloc(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primaryColor: _primaryColorLight,
