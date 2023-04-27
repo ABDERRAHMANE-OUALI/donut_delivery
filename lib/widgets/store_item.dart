@@ -2,10 +2,16 @@ import 'package:donut_delivery/data/models/store_item.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class StoreItem extends StatelessWidget {
+class StoreItem extends StatefulWidget {
   final StoreItemModel item;
   const StoreItem({super.key, required this.item});
 
+  @override
+  State<StoreItem> createState() => _StoreItemState();
+}
+
+class _StoreItemState extends State<StoreItem> {
+  SMIBool? _like;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +21,7 @@ class StoreItem extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
-            item.imgUrl,
+            widget.item.imgUrl,
             width: 100,
             height: 100,
             fit: BoxFit.cover,
@@ -24,7 +30,8 @@ class StoreItem extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(item.title, style: Theme.of(context).textTheme.headlineMedium
+            Text(widget.item.title,
+                style: Theme.of(context).textTheme.headlineMedium
                 // const TextStyle(
                 //   fontWeight: FontWeight.bold,
                 //   fontSize: 19,
@@ -44,7 +51,7 @@ class StoreItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Text(
-                      item.rating,
+                      widget.item.rating,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -59,7 +66,7 @@ class StoreItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    item.pricing,
+                    widget.item.pricing,
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge
@@ -101,10 +108,25 @@ class StoreItem extends StatelessWidget {
             ],
           ),
         ),
-        trailing: const SizedBox(
+        trailing: SizedBox(
           height: 40,
           width: 40,
-          child: RiveAnimation.asset("assets/heart.riv"),
+          child: GestureDetector(
+            onTap: () {
+              _like?.value = !(_like?.value ?? false);
+            },
+            child: RiveAnimation.asset(
+              "assets/heart.riv",
+              onInit: (artboard) {
+                final controller = StateMachineController.fromArtboard(
+                    artboard, "State Machine 1");
+                artboard.addController(controller!);
+                setState(() {
+                  _like = controller.findInput<bool>("like") as SMIBool;
+                });
+              },
+            ),
+          ),
         ),
       ),
     );

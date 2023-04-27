@@ -107,11 +107,13 @@ class _VendorScreenState extends State<VendorScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProductScreen(),
+                            builder: (context) => ProductScreen(
+                              donutUrl: productList[index]["imagePath"],
+                            ),
                           ));
                     },
                     child: ListTile(
-                      contentPadding: EdgeInsets.all(12),
+                      contentPadding: const EdgeInsets.all(12),
                       leading: Image.asset(productList[index]["imagePath"]),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +142,7 @@ class _VendorScreenState extends State<VendorScreen> {
                                     ?.copyWith(color: Colors.grey),
                               ),
                             ),
-                            Text(
+                            const Text(
                               "ADD TO CART",
                               style: TextStyle(
                                   color: Colors.red,
@@ -197,11 +199,11 @@ class _VendorScreenState extends State<VendorScreen> {
                                       color: Colors.yellow,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 8.0),
                                     child: Text(
                                       "4.2",
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -233,10 +235,10 @@ class _VendorScreenState extends State<VendorScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 18),
                               child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
                                     color: Theme.of(context)
                                         .colorScheme
                                         .secondary),

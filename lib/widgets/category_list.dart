@@ -1,9 +1,13 @@
 import 'package:donut_delivery/data.dart';
+import 'package:donut_delivery/presentation/welcome_screen/bloc/donuts_bloc.dart';
 import 'package:donut_delivery/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryList extends StatefulWidget {
+  const CategoryList({super.key});
+
   @override
   State<CategoryList> createState() => _CategoryListState();
 }
@@ -27,6 +31,7 @@ class _CategoryListState extends State<CategoryList> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
+                  context.read<DonutsBloc>().add(DonutsChange(index: index));
                   setState(() {
                     _selectedIndex = index;
                   });

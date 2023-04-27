@@ -1,7 +1,9 @@
+import 'package:donut_delivery/presentation/welcome_screen/bloc/donuts_bloc.dart';
 import 'package:donut_delivery/theme.dart';
 import 'package:donut_delivery/presentation/welcome_screen/welcome_screen.dart';
 import 'package:donut_delivery/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,104 +23,107 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: _primaryColorLight,
-        primaryColorDark: _buttonColor,
-        primaryColorLight: _primaryColorLight,
-        scaffoldBackgroundColor: _scaffoldColorLight,
-        disabledColor: Colors.white.withOpacity(0.15),
-        colorScheme: const ColorScheme.light().copyWith(
-            secondary: _secondaryColorLight,
-            error: _errorColorLight,
-            primary: _primaryColorLight),
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            letterSpacing: -1.5,
-            color: Colors.black,
-          ),
-          displayMedium: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 28,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -1.0,
-            color: Colors.black,
-          ),
-          displaySmall: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 24,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.75,
-            color: Colors.black,
-          ),
-          headlineMedium: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.50,
-            color: Colors.black,
-          ),
-          headlineSmall: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.5,
-            color: Colors.black,
-          ),
+    return BlocProvider(
+      create: (context) => DonutsBloc(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primaryColor: _primaryColorLight,
+          primaryColorDark: _buttonColor,
+          primaryColorLight: _primaryColorLight,
+          scaffoldBackgroundColor: _scaffoldColorLight,
+          disabledColor: Colors.white.withOpacity(0.15),
+          colorScheme: const ColorScheme.light().copyWith(
+              secondary: _secondaryColorLight,
+              error: _errorColorLight,
+              primary: _primaryColorLight),
+          textTheme: const TextTheme(
+            displayLarge: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              letterSpacing: -1.5,
+              color: Colors.black,
+            ),
+            displayMedium: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 28,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -1.0,
+              color: Colors.black,
+            ),
+            displaySmall: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.75,
+              color: Colors.black,
+            ),
+            headlineMedium: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 20,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.50,
+              color: Colors.black,
+            ),
+            headlineSmall: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.5,
+              color: Colors.black,
+            ),
 
-          titleLarge: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            letterSpacing: -0.25,
-            color: Colors.black,
-          ),
-          titleMedium: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 16,
-            letterSpacing: 0.15,
-            color: Colors.black,
-          ),
-          titleSmall: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 14,
-            letterSpacing: 0.1,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-          bodySmall: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 12,
-            color: Colors.black,
-          ),
-          bodyLarge: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 16,
-            letterSpacing: 0.5,
-            color: Colors.black,
-          ),
-          bodyMedium: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 14,
-            letterSpacing: 0.25,
-            color: Colors.black,
-          ),
+            titleLarge: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -0.25,
+              color: Colors.black,
+            ),
+            titleMedium: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 16,
+              letterSpacing: 0.15,
+              color: Colors.black,
+            ),
+            titleSmall: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 14,
+              letterSpacing: 0.1,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+            bodySmall: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 12,
+              color: Colors.black,
+            ),
+            bodyLarge: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 16,
+              letterSpacing: 0.5,
+              color: Colors.black,
+            ),
+            bodyMedium: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 14,
+              letterSpacing: 0.25,
+              color: Colors.black,
+            ),
 
-          //BUTTON
-          labelLarge: TextStyle(
-            fontFamily: 'Outfit',
-            fontSize: 11,
-            letterSpacing: 1.25,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
+            //BUTTON
+            labelLarge: TextStyle(
+              fontFamily: 'Outfit',
+              fontSize: 11,
+              letterSpacing: 1.25,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
           ),
         ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

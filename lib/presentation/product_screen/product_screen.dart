@@ -1,9 +1,20 @@
 import 'package:donut_delivery/widgets/product_text_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
+  final String donutUrl;
+  const ProductScreen({super.key, required this.donutUrl});
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  SMIBool? _like;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +54,7 @@ class ProductScreen extends StatelessWidget {
               Positioned(
                   left: -220,
                   right: 180,
-                  child: Image.asset("assets/donut_4.png")
+                  child: Image.asset(widget.donutUrl)
                       .animate(delay: 500.ms)
                       .rotate(curve: Curves.ease, duration: 600.ms)),
               Positioned(
@@ -100,24 +111,46 @@ class ProductScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 28.0),
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          child: Container(
-                              height: 60,
-                              width: 60,
-                              color: Colors.grey[200],
-                              child: const RiveAnimation.asset(
-                                "assets/heart.riv",
-                                artboard: "heart",
-                              )),
-                        ),
+                        child: SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: GestureDetector(
+                              onTap: () {
+                                _like?.value = !(_like?.value ?? false);
+                              },
+                              child: Stack(
+                                children: [
+                                  SvgPicture.asset("assets/Hexagon.svg"),
+                                  Center(
+                                    child: SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: RiveAnimation.asset(
+                                        "assets/heart.riv",
+                                        artboard: "heart",
+                                        onInit: (artboard) {
+                                          final controller =
+                                              StateMachineController
+                                                  .fromArtboard(artboard,
+                                                      "State Machine 1");
+                                          artboard.addController(controller!);
+                                          setState(() {
+                                            _like = controller.findInput<bool>(
+                                                "like") as SMIBool;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
                       ),
                       Expanded(
                         child: ElevatedButton(
                           style: const ButtonStyle(
                               padding:
-                                  MaterialStatePropertyAll(EdgeInsets.all(17)),
+                                  MaterialStatePropertyAll(EdgeInsets.all(12)),
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.red),
                               elevation: MaterialStatePropertyAll(1)),

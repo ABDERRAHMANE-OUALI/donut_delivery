@@ -1,5 +1,7 @@
 //Home Screen Data
 
+import 'package:donut_delivery/data/models/store_item.dart';
+
 List<Map<String, dynamic>> vendorList = const [
   {
     "imagePath": "assets/images/logo/gladis_logo.jpg",
@@ -99,4 +101,95 @@ List<String> name = [
   'Burgers',
   'Pizza',
   'Dessert',
+];
+
+final items = [
+  [
+    StoreItemModel(
+        rating: "4,2",
+        title: "Glodous amoli",
+        imgUrl: "assets/donut_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,5",
+        title: "Sweets Shop.",
+        imgUrl: "assets/tasties_item.jpg",
+        pricing: '\$2.5'),
+  ],
+  [
+    StoreItemModel(
+        rating: "4,2",
+        title: "Glodous amoli",
+        imgUrl: "assets/donut_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,5",
+        title: "Sweets Shop.",
+        imgUrl: "assets/tasties_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+  ],
+  [
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,2",
+        title: "Glodous amoli",
+        imgUrl: "assets/donut_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,5",
+        title: "Sweets Shop.",
+        imgUrl: "assets/tasties_item.jpg",
+        pricing: '\$2.5'),
+  ],
+  [
+    StoreItemModel(
+        rating: "4,5",
+        title: "Sweets Shop.",
+        imgUrl: "assets/tasties_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,2",
+        title: "Glodous amoli",
+        imgUrl: "assets/donut_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+    StoreItemModel(
+        rating: "4,9",
+        title: "Tasties by tina",
+        imgUrl: "assets/gladis_item.jpg",
+        pricing: '\$2.5'),
+  ]
 ];

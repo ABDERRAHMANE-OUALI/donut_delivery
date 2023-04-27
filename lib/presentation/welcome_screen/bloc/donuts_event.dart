@@ -1,4 +1,7 @@
 part of 'donuts_bloc.dart';
 
-@immutable
-abstract class DonutsChange {}
+class DonutsChange {
+  final int index;
+
+  DonutsChange({required this.index});
+}

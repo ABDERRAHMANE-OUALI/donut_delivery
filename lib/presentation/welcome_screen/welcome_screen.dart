@@ -20,6 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -47,28 +48,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 150,
-            width: 80,
-            child: GestureDetector(
-              onTap: () {
-                _liked?.value = true;
-              },
-              child: RiveAnimation.asset(
-                "assets/heart.riv",
-                stateMachines: const ["State Machine 1"],
-                artboard: "heart",
-                onInit: (artboard) {
-                  final controller = StateMachineController.fromArtboard(
-                      artboard, "State Machine 1");
-                  artboard.addController(controller!);
-                  setState(() {
-                    _liked = controller.findInput("like") as SMIBool;
-                  });
-                },
-              ),
-            ),
-          )
         ],
       ),
       body: Stack(
@@ -101,7 +80,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ]),
                 ),
               ),
-              CategoryList(),
+              const CategoryList(),
               const StoresList()
             ],
           ),
