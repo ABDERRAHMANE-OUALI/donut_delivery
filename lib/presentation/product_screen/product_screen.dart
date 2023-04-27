@@ -1,3 +1,4 @@
+import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
 import 'package:donut_delivery/widgets/product_text_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -35,14 +36,23 @@ class _ProductScreenState extends State<ProductScreen> {
                   .bodyLarge
                   ?.copyWith(fontWeight: FontWeight.bold, fontSize: 19),
             )),
-        actions: const [
-          SizedBox(
-              height: 60,
-              width: 60,
-              child: RiveAnimation.asset(
-                "assets/shopping.riv",
-                artboard: "shopping",
-              ))
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ShoppingScreen(),
+                  ));
+            },
+            child: const SizedBox(
+                height: 60,
+                width: 60,
+                child: RiveAnimation.asset(
+                  "assets/shopping.riv",
+                  artboard: "shopping",
+                )),
+          )
         ],
       ),
       body: Column(
@@ -154,7 +164,13 @@ class _ProductScreenState extends State<ProductScreen> {
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.red),
                               elevation: MaterialStatePropertyAll(1)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ShoppingScreen(),
+                                ));
+                          },
                           child: Text(
                             "ADD TO CART",
                             style: Theme.of(context)

@@ -1,5 +1,6 @@
 import 'package:donut_delivery/data.dart';
 import 'package:donut_delivery/presentation/product_screen/product_screen.dart';
+import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
@@ -77,6 +78,14 @@ class _VendorScreenState extends State<VendorScreen> {
                                         height: 150,
                                         width: 70,
                                         child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ShoppingScreen(),
+                                                ));
+                                          },
                                           child: RiveAnimation.asset(
                                             "assets/shopping.riv",
                                             stateMachines: const ["shopping"],

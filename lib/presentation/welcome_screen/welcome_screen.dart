@@ -1,3 +1,4 @@
+import 'package:donut_delivery/presentation/shooping_screen/shooping_screen.dart';
 import 'package:donut_delivery/widgets/category_list.dart';
 import 'package:donut_delivery/widgets/stores_list.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: GestureDetector(
               onTap: () {
                 _shoopingTrigger?.fire();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShoppingScreen(),
+                    ));
               },
               child: RiveAnimation.asset(
                 "assets/shopping.riv",
