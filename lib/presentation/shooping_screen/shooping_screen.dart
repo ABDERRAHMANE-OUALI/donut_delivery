@@ -74,7 +74,8 @@ class ShoppingScreen extends StatelessWidget {
                             elevation: const MaterialStatePropertyAll(23),
                             backgroundColor: MaterialStatePropertyAll(
                                 Theme.of(context).colorScheme.secondary),
-                            iconColor: const MaterialStatePropertyAll(Colors.black),
+                            iconColor:
+                                const MaterialStatePropertyAll(Colors.black),
                             padding: const MaterialStatePropertyAll(
                                 EdgeInsets.symmetric(
                                     horizontal: 33, vertical: 22))),
